@@ -14,7 +14,6 @@ pymorphy2==0.8
 pymorphy2-dicts==2.4.393442.3710985
 pymorphy2-dicts-ru==2.4.404381.4453942
 pyparsing==2.3.0
-PyRTF3==0.47.4+2.g688674e
 python-docx==0.8.7
 pytz==2018.7
 selenium==3.141.0

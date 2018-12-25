@@ -4,6 +4,12 @@ python:
   - "3.6"
   
 install:
+- pwd
+- ls -la
+- find -name "requirements.txt"
+- cd DocumentClassifierTesting
+- pwd
+- ls -la
 - pip install --upgrade pip
 - pip install -r requrement.txt
 

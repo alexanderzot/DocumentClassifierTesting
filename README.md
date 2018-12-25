@@ -2,40 +2,40 @@
 
 ## API
 
-### Авторизация
+### РђРІС‚РѕСЂРёР·Р°С†РёСЏ
 ```
 url: /api/user/sign_in/
 method: POST
 json: {"email": "admin@example.com", "password": "admin"}
 ```
 
-**Результат:**
+**Р РµР·СѓР»СЊС‚Р°С‚:**
 
-1. Успешная авторизация
+1. РЈСЃРїРµС€РЅР°СЏ Р°РІС‚РѕСЂРёР·Р°С†РёСЏ
 ```
 status: 200
 json: {'status': 'OK', 'username': $username$}
 ```
-2. Ошибка авторизации
+2. РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё
 ```
 status: 204
 json: {'status': 'FAIL'}
 ```
 
-### Деавторизация
+### Р”РµР°РІС‚РѕСЂРёР·Р°С†РёСЏ
 ```
 url: /api/user/sign_out/
 method: POST
 ```
 
-**Результат:**
+**Р РµР·СѓР»СЊС‚Р°С‚:**
 
-1. Успешная авторизация
+1. РЈСЃРїРµС€РЅР°СЏ Р°РІС‚РѕСЂРёР·Р°С†РёСЏ
 ```
 status: 200
 json: {'status': 'OK'}
 ```
-2. Ошибка авторизации
+2. РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё
 ```
 status: 204
 json: {'status': 'FAIL'}
@@ -45,7 +45,7 @@ json: {'status': 'FAIL'}
 
 
 
-## Пакеты Python:
+## РџР°РєРµС‚С‹ Python:
 ```ssh
 Django	2.1.3	2.1.3
 djangorestframework	3.9.0	3.9.0
@@ -75,9 +75,9 @@ selenium 3.141.0
 
 
 
-## Администрирование
+## РђРґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ
 
-### Активация виртуальной среды
+### РђРєС‚РёРІР°С†РёСЏ РІРёСЂС‚СѓР°Р»СЊРЅРѕР№ СЃСЂРµРґС‹
 **Windows: **
 ```
 source venv/Scripts/activate
@@ -88,13 +88,13 @@ source venv/Scripts/activate
 source venv/bin/activate
 ```
 
-### Миграция
+### РњРёРіСЂР°С†РёСЏ
 ```
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-### Создание суперпользователя
+### РЎРѕР·РґР°РЅРёРµ СЃСѓРїРµСЂРїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 **Windows: **
 
 ```ssh
@@ -107,11 +107,11 @@ winpty python manage.py createsuperuser
 winpty python manage.py createsuperuser
 ```
 
-## Тестирование
+## РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ
 
 coverage run --source='.' manage.py test api
 
-Удаление временного  файла
+РЈРґР°Р»РµРЅРёРµ РІСЂРµРјРµРЅРЅРѕРіРѕ  С„Р°Р№Р»Р°
 coverage erase
 
 coverage report
@@ -121,18 +121,18 @@ coverage html
 coverage run manage.py test api -v 2
 coverage html
 
-## Selenium установка
+## Selenium СѓСЃС‚Р°РЅРѕРІРєР°
 
 https://selenium-python.readthedocs.io/installation.html
 geckodriver (32 bit) https://github.com/mozilla/geckodriver/releases
 install FireFox
 
-Плагины
+РџР»Р°РіРёРЅС‹
 https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd
 https://addons.mozilla.org/en-US/firefox/addon/selenium-ide/
 
 
-## Запуск тестов
+## Р—Р°РїСѓСЃРє С‚РµСЃС‚РѕРІ
 python manage.py test
 
 python manage.py test --verbosity 2

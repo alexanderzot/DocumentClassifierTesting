@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Document Classifier</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- MDBootstrap Datatables  -->
+    <link href="{% static 'css/addons/datatables.min.css' %}" rel="stylesheet">
+</head>
+
+<body class="grey lighten-3">
+    {% include 'header.html' %}
+
+
+    <main class="pt-5 max-lg-5">
+        <div class="container mt-5">
+            <div class="alert alert-danger">
+                {{ error_desc }}
+            </div>
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+    <!-- MDBootstrap Datatables  -->
+    <script type="text/javascript" src="{% static 'js/addons/datatables.min.js' %}"></script>
+    <!-- JavaScript -->
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+    <script>
+        new WOW().init();
+
+        $(document).ready(function () {
+            $('#dtHorizontalVerticalExample').DataTable({
+                "scrollX": true,
+                "scrollY": 200,
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+</body>
+
+</html>

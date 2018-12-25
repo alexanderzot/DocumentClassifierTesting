@@ -1,0 +1,136 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Document Classifier</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- MDBootstrap Datatables  -->
+    <link href="{% static 'css/addons/datatables.min.css' %}" rel="stylesheet">
+</head>
+
+<body class="grey lighten-3">
+    {% include 'header.html' %}
+
+
+    <main class="pt-5 max-lg-5">
+        <div class="container mt-5">
+            <div class="card mb-4 wow fadeInDown">
+                <div class="card-body">
+                    <h4 class="mb-2 mb-sm-0 pt-1">
+                        <a href="#">Главная</a>
+                        <span> / </span>
+                        <span>Загрузка файла</span>
+                    </h4>
+
+                    <form enctype="multipart/form-data"  action="" class="container" method="post">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-sm-12 col-md-4 pt-3">
+                                <div class="custom-file">
+                                    <input name="file" type="file" class="custom-file-input" id="inputFile" aria-describedby="inputGroupFileAddon01">
+                                    <label id="id_file_input_label" class="custom-file-label" for="inputFile">Выберете файл...</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 pt-3">
+                                <input name="name" id="id_file_name" type="search" class="form-control" placeholder="Название">
+                            </div>
+                            <div class="col-sm-12 col-md-3 pt-3">
+                                <select name="select_algorithm" class="form-control">
+                                    {% for algorithm in algorithms %}
+                                        <option value="{{ algorithm.get_id }}">{{ algorithm.get_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-2 pt-3">
+                                <button class="btn btn-primary btn-md my-0 d-block w-100 mx-0 py-2" type="submit">
+                                    <i class="fa fa-upload fa-2x"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {% if user_files.count > 0 %}
+        <div class="container mt-5">
+            <div class="card mb-4 wow fadeInRight">
+                <div class="card-body">
+                    <h4 class="mb-2 mb-sm-0 pt-1">
+                        <a href="#">Статистика</a>
+                        <span> / </span>
+                        <span>Классифицированные документы пользователя</span>
+                    </h4>
+
+                    <table id="dtHorizontalVerticalExample" cellspacing="0" width="100%"
+                           class="table table-bordered mt-3 text-center table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Имя</th>
+                                <th scope="col">Алгоритм</th>
+                                <th scope="col">Результат</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for file in user_files %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ file.file.get_name }}</td>
+                                    <td>{{ file.algorithm.get_name }}</td>
+                                    {% if file.result %}
+                                        <td>{{ file.result.get_name }}</td>
+                                    {% else %}
+                                        <td>Пока не обработан</td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </main>
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+    <!-- MDBootstrap Datatables  -->
+    <script type="text/javascript" src="{% static 'js/addons/datatables.min.js' %}"></script>
+    <!-- JavaScript -->
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+    <script>
+        new WOW().init();
+
+        $(document).ready(function () {
+            $('#dtHorizontalVerticalExample').DataTable({
+                "scrollX": true,
+                "scrollY": 200,
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+</body>
+
+</html>

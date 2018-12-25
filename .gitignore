@@ -1,0 +1,33 @@
+# ide code editor
+.idea
+
+# database local
+*.sqlite3
+
+# loaded files
+media/
+
+# byte-compiled
+
+__pycache__/
+__pycache__
+*.py[cod]
+*$py.class
+
+# virtualenv
+venv/
+
+# test report
+.coverage
+htmlcov/
+
+# driver
+/driver/*
+
+# files
+*.log
+*.out
+*.rtf
+*.txt
+*.docx
+*.doc

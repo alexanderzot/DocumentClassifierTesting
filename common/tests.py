@@ -6,6 +6,7 @@ from common.parser import *
 import PyRTF.Elements
 import PyRTF.Renderer
 
+
 class TestDocumentParser(TestCase):
     def setUp(self):
         self.texts = [
@@ -15,6 +16,7 @@ class TestDocumentParser(TestCase):
         ]
         self.filename = 'test'
 
+    @staticmethod
     def compare_text(self, text1, text2):
         text1 = re.sub(r'\s+', ' ', text1.replace('\n', ' '))
         text2 = re.sub(r'\s+', ' ', text2.replace('\n', ' '))
@@ -48,7 +50,6 @@ class TestDocumentParser(TestCase):
             with open(self.filename + '.out', 'w') as f:
                 f.write(text)
 
-
     def test_parser_texts(self):
         for text in self.texts:
             for file_type in list_of_parse_type:
@@ -77,7 +78,6 @@ class TestDocumentParser(TestCase):
             self.create_file(file_type, text)
             parsed_text = get_text_from_txt(self.filename + '.' + file_type)
             self.assertTrue(self.compare_text(text, parsed_text))
-
 
     def test_error_format(self):
         text = self.texts[2]
@@ -125,7 +125,6 @@ class TestWords(TestCase):
     def create_file(self, text):
         with open(self.filename + '.txt', 'w') as f:
             f.write(text)
-
 
     def test_get_words(self):
         for i in range(len(self.texts)):
@@ -176,7 +175,6 @@ class TestGetFeatures(TestCase):
 
         ]
 
-
     def test_empty_all_words(self):
         for i in range (len(self.words)):
             f = get_features(self.words[i], self.all_words[0])
@@ -197,6 +195,7 @@ class TestGetFeatures(TestCase):
     def test_more_than_all_words(self):
         f = get_features(self.words[2], self.all_words[1])
         self.assertDictEqual(f, self.results[1])
+
 
 class TestPrepareTrain(TestCase):
     def setUp(self):
@@ -246,7 +245,6 @@ class TestPrepareTrain(TestCase):
             self.assertDictEqual(train1[i], train2[i])
         return True
 
-
     def test_empty(self):
         document_list = self.create_files(self.texts[0])
         all_words, train_list = get_all_train_words_and_train_list(document_list)
@@ -258,7 +256,6 @@ class TestPrepareTrain(TestCase):
         all_words, train_list = get_all_train_words_and_train_list(document_list)
         self.assertEqual(self.all_words[1], all_words)
         self.assertEqual(self.train_list[1], train_list)
-
 
     def test_different_files(self):
         document_list = self.create_files(self.texts[2])

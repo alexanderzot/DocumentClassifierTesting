@@ -55,28 +55,28 @@ class TestDocumentParser(TestCase):
             for file_type in list_of_parse_type:
                 self.create_file(file_type, text)
                 parsed_text = parse_document(self.filename + '.' + file_type)
-                self.assertTrue(compare_text(text, parsed_text))
+                self.assertTrue(TestDocumentParser.compare_text(text, parsed_text))
 
     def test_parser_texts_docx(self):
         for text in self.texts:
             file_type = 'docx'
             self.create_file(file_type, text)
             parsed_text = get_text_from_docx(self.filename + '.' + file_type)
-            self.assertTrue(compare_text(text, parsed_text))
+            self.assertTrue(TestDocumentParser.compare_text(text, parsed_text))
 
     def test_parser_texts_rtf(self):
         for text in self.texts:
             file_type = 'rtf'
             self.create_file(file_type, text)
             parsed_text = get_text_from_rtf(self.filename + '.' + file_type)
-            self.assertTrue(compare_text(text, parsed_text))
+            self.assertTrue(TestDocumentParser.compare_text(text, parsed_text))
 
     def test_parser_texts_txt(self):
         for text in self.texts:
             file_type = 'txt'
             self.create_file(file_type, text)
             parsed_text = get_text_from_txt(self.filename + '.' + file_type)
-            self.assertTrue(compare_text(text, parsed_text))
+            self.assertTrue(TestDocumentParser.compare_text(text, parsed_text))
 
     def test_error_format(self):
         text = self.texts[2]

@@ -17,7 +17,7 @@ class TestDocumentParser(TestCase):
         self.filename = 'test'
 
     @staticmethod
-    def compare_text(self, text1, text2):
+    def compare_text(text1, text2):
         text1 = re.sub(r'\s+', ' ', text1.replace('\n', ' '))
         text2 = re.sub(r'\s+', ' ', text2.replace('\n', ' '))
         if text1 and text1[0] == ' ':
@@ -30,23 +30,23 @@ class TestDocumentParser(TestCase):
                 text2 = text2[:-1]
         return text1 == text2
 
-    def create_file(self, type, text):
-        if type == 'txt':
-          with open(self.filename + '.txt', 'w') as f:
-              f.write(text)
-        elif type == 'docx':
+    def create_file(self, file_type, text):
+        if file_type == 'txt':
+            with open(self.filename + '.txt', 'w') as f:
+                f.write(text)
+        elif file_type == 'docx':
             doc = docx.Document()
             doc.add_paragraph(text)
             doc.add_page_break()
             doc.save(self.filename + '.docx')
-        elif type == 'rtf':
+        elif file_type == 'rtf':
             doc = PyRTF.Elements.Document()
             section = PyRTF.Elements.Section()
             doc.Sections.append(section)
             section.append(text)
-            DR = PyRTF.Renderer.Renderer()
-            DR.Write(doc, open('%s.rtf' % self.filename, 'w'))
-        elif type == 'out':
+            d_r = PyRTF.Renderer.Renderer()
+            d_r.Write(doc, open('%s.rtf' % self.filename, 'w'))
+        elif file_type == 'out':
             with open(self.filename + '.out', 'w') as f:
                 f.write(text)
 
@@ -175,12 +175,12 @@ class TestGetFeatures(TestCase):
         ]
 
     def test_empty_all_words(self):
-        for i in range (len(self.words)):
+        for i in range(len(self.words)):
             f = get_features(self.words[i], self.all_words[0])
             self.assertDictEqual({}, f)
 
     def test_all_words_in_words(self):
-        for i in range (1, len(self.words)):
+        for i in range(1, len(self.words)):
             f = get_features(self.words[i], self.all_words[1])
 
     def test_equal_all_words(self):
@@ -267,4 +267,3 @@ class TestPrepareTrain(TestCase):
         all_words, train_list = get_all_train_words_and_train_list(document_list)
         self.assertEqual(self.all_words[3], all_words)
         self.assertEqual(self.train_list[3], train_list)
-
